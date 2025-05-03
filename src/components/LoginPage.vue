@@ -91,18 +91,14 @@ const username = ref('')
 const password = ref('')
 
 const handleLogin = () => {
-  // Ici vous pouvez implémenter la logique d'authentification
   console.log('Login attempt:', username.value, password.value)
 
-  // Émettre un événement pour informer le parent de la connexion
-  emit('login-success', { username: username.value })
+  emit('navigate', 'dashboard')
 }
 
 const goToRegister = () => {
-  // Émettre un événement pour naviguer vers la page d'inscription
   emit('navigate', 'register')
 }
 
-// Définir les événements pour communiquer avec le composant parent
-const emit = defineEmits(['login-success', 'navigate'])
+const emit = defineEmits(['navigate'])
 </script>

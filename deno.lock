@@ -8,6 +8,7 @@
     "npm:tailwindcss@^4.1.5": "4.1.5",
     "npm:typescript@~5.7.2": "5.7.3",
     "npm:vite@^6.3.1": "6.3.4_picomatch@4.0.2",
+    "npm:vue-router@^4.5.1": "4.5.1_vue@3.5.13__typescript@5.7.3_typescript@5.7.3",
     "npm:vue-tsc@^2.2.8": "2.2.10_typescript@5.7.3",
     "npm:vue@^3.5.13": "3.5.13_typescript@5.7.3"
   },
@@ -467,6 +468,9 @@
         "he"
       ]
     },
+    "@vue/devtools-api@6.6.4": {
+      "integrity": "sha512-sGhTPMuXqZ1rVOk32RylztWkfXTRhuS7vgAKv0zjqk8gbsHkJ7xfFf+jbySxt7tWObEJwyKaHMikV/WGDiQm8g=="
+    },
     "@vue/language-core@2.2.10_typescript@5.7.3": {
       "integrity": "sha512-+yNoYx6XIKuAO8Mqh1vGytu8jkFEOH5C8iOv3i8Z/65A7x9iAOXA97Q+PqZ3nlm2lxf5rOJuIGI/wDtx/riNYw==",
       "dependencies": [
@@ -800,6 +804,13 @@
     "vscode-uri@3.1.0": {
       "integrity": "sha512-/BpdSx+yCQGnCvecbyXdxHDkuk55/G3xwnC0GqY4gmQ3j+A+g8kzzgB4Nk/SINjqn6+waqw3EgbVF2QKExkRxQ=="
     },
+    "vue-router@4.5.1_vue@3.5.13__typescript@5.7.3_typescript@5.7.3": {
+      "integrity": "sha512-ogAF3P97NPm8fJsE4by9dwSYtDwXIY1nFY9T6DyQnGHd1E2Da94w9JIolpe42LJGIl0DwOHBi8TcRPlPGwbTtw==",
+      "dependencies": [
+        "@vue/devtools-api",
+        "vue"
+      ]
+    },
     "vue-tsc@2.2.10_typescript@5.7.3": {
       "integrity": "sha512-jWZ1xSaNbabEV3whpIDMbjVSVawjAyW+x1n3JeGQo7S0uv2n9F/JMgWW90tGWNFRKya4YwKMZgCtr0vRAM7DeQ==",
       "dependencies": [
@@ -834,6 +845,7 @@
         "npm:tailwindcss@^4.1.5",
         "npm:typescript@~5.7.2",
         "npm:vite@^6.3.1",
+        "npm:vue-router@^4.5.1",
         "npm:vue-tsc@^2.2.8",
         "npm:vue@^3.5.13"
       ]
