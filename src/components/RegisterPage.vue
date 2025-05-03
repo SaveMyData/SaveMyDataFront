@@ -142,9 +142,23 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, computed } from 'vue'
 import { UserIcon, LockIcon, ServerIcon, MailIcon, AtSignIcon, ShieldCheckIcon } from 'lucide-vue-next'
+import Cookies from 'js-cookie';
+import axios from 'axios';
+
+// Define types
+type RegisterData = {
+  name: string;
+  email: string;
+  username: string;
+  password: string;
+}
+
+type RegisterResponse = {
+  token: string;
+}
 
 const fullname = ref('')
 const email = ref('')
@@ -170,19 +184,50 @@ const isFormValid = computed(() => {
       acceptTerms.value
 })
 
-const handleRegister = () => {
+const handleRegister = async () => {
   if (!isFormValid.value)
     return
 
   console.log('Register attempt:', {
-    fullname: fullname.value,
+    name: fullname.value,
     email: email.value,
     username: username.value,
     password: password.value
   })
-  // Call API to register the user
 
-  emit('navigate', 'dashboard')
+  const userData: RegisterData = {
+    name: fullname.value,
+    email: email.value,
+    username: username.value,
+    password: password.value
+  };
+
+  try {
+    // Make API call to register endpoint
+    const response = await axios.post<RegisterResponse>(
+        'http://localhost:8080/api/auth/register',
+        userData,
+        {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
+    );
+
+    console.log('API response:', response.data);
+    console.log('API token:', response.data.token);
+    if (response.data && response.data.token) {
+      Cookies.set('auth-token', response.data.token, {
+        sameSite: 'strict'
+      });
+
+      emit('navigate', 'dashboard');
+    } else {
+      console.error('Registration failed: Invalid response format');
+    }
+  } catch (error) {
+    console.error('Registration error:', error);
+  }
 }
 
 const goToLogin = () => {

@@ -1,8 +1,10 @@
-import { createRouter, createWebHistory } from 'vue-router'
+// src/router/index.ts
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import LoginPage from '../components/LoginPage.vue'
 import RegisterPage from '../components/RegisterPage.vue'
+import DashboardPage from '../components/DashboardPage.vue'
 
-const routes = [
+const routes: Array<RouteRecordRaw> = [
     {
         path: '/',
         name: 'Login',
@@ -16,9 +18,9 @@ const routes = [
     {
         path: '/dashboard',
         name: 'Dashboard',
+        component: DashboardPage,
         meta: { requiresAuth: true }
     }
-
 ]
 
 const router = createRouter({
@@ -26,8 +28,14 @@ const router = createRouter({
     routes
 })
 
+function getCookie(name: string): string | undefined {
+    const value = `; ${document.cookie}`
+    const parts = value.split(`; ${name}=`)
+    if (parts.length === 2) return parts.pop()?.split(';').shift()
+}
+
 router.beforeEach((to, from, next) => {
-    const token = localStorage.getItem('token')
+    const token = getCookie('auth-token')
 
     if (to.meta.requiresAuth && !token) {
         next({ name: 'Login' })
