@@ -266,7 +266,7 @@ import {
   LayoutDashboardIcon, FileTextIcon, FolderIcon, ShieldIcon,
   UsersIcon, SettingsIcon, HardDriveIcon, EyeIcon, DownloadIcon,
   MoreVerticalIcon, FileIcon, ImageIcon, FileSpreadsheetIcon,
-  UploadIcon, EditIcon, TrashIcon, ShareIcon
+  UploadIcon, EditIcon, TrashIcon, ShareIcon, Presentation
 } from 'lucide-vue-next'
 
 const sidebarOpen = ref(false)
@@ -293,7 +293,8 @@ const recentDocuments = [
   { name: 'Facture EDF Janvier.pdf', type: 'PDF', size: '1.2 MB', modified: 'Il y a 1 jour' },
   { name: 'Passeport.jpg', type: 'Image', size: '3.8 MB', modified: 'Il y a 3 jours' },
   { name: 'Relevé bancaire.xlsx', type: 'Spreadsheet', size: '0.8 MB', modified: 'Il y a 1 semaine' },
-  { name: 'Contrat de travail.pdf', type: 'PDF', size: '4.2 MB', modified: 'Il y a 2 semaines' }
+  { name: 'Contrat de travail.docx', type: 'Document', size: '1.5 MB', modified: 'Il y a 2 semaines' },
+  { name: 'Présentation.pptx', type: 'Presentation', size: '4.2 MB', modified: 'Il y a 1 mois' }
 ]
 
 // Activités récentes
@@ -334,6 +335,7 @@ const getDocumentIcon = (type) => {
     case 'PDF': return FileTextIcon
     case 'Image': return ImageIcon
     case 'Spreadsheet': return FileSpreadsheetIcon
+    case 'Presentation': return Presentation
     default: return FileIcon
   }
 }
