@@ -10,6 +10,9 @@ const handleNavigate = (destination: string) => {
   if (destination === 'dashboard') {
     router.push({ name: 'Dashboard' })
   }
+  if (destination === 'login') {
+    router.push({ name: 'Login' })
+  }
 }
 </script>
 
