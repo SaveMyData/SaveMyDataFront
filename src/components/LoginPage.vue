@@ -78,6 +78,7 @@
             Se connecter avec Google
           </button>
         </div>
+        <p id="error" class="text-red-800 font-bold pt-2"></p>
       </div>
     </div>
   </div>
@@ -108,7 +109,6 @@ const isFormValid = computed(() => {
 const handleLogin = async () => {
   if (!isFormValid.value)
     return
-  console.log('Login attempt:', username.value, password.value)
 
   const userData: LoginData = {
     username: username.value,
@@ -126,21 +126,22 @@ const handleLogin = async () => {
         }
     );
 
-    console.log('API response:', response.data);
-    console.log('API token:', response.data.token);
-    if (response.data && response.data.token) {
-      Cookies.set('auth-token', response.data.token, {
-        sameSite: 'strict'
-      });
+    if (response.data) {
+      if (response.data.token) {
+        Cookies.set('auth-token', response.data.token, {
+          sameSite: 'strict'
+        });
 
-      emit('navigate', 'dashboard');
-    } else {
-      console.error('Registration failed: Invalid response format');
+        emit('navigate', 'dashboard');
+      } else {
+        document.getElementById("error")!.innerHTML = response.data.error;
+        console.error('Registration failed: Invalid response format');
+      }
     }
   } catch (error) {
+    document.getElementById("error")!.innerHTML = "Authentication failed. Please check your credentials.";
     console.error('Registration error:', error);
   }
-
 }
 
 const goToRegister = () => {
